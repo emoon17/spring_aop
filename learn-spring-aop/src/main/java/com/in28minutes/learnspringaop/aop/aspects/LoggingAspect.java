@@ -19,10 +19,10 @@ public class LoggingAspect {
 	// 3.Pointcut : 언제를 지정 when - 어떤 메소드를 인터셉트할 것인가.
 	// execution(* PACKAGE.*.*(..))
 	// 메소드 호출 전에 실행할 것이기 때문에 Before
-	@Before("execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))") //--pointcut
+	@Before("execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))") 
 	public void LogMethodCall(JoinPoint joinPoint) { // joinpoint 특정 메소드 실행을 명시
-		//4. Logic : 무엇에 대한 건지 지정 what(어떤 메소드를 대상으로 하는가)
-		logger.info("Before Aspect - Method is called - {}", joinPoint); //--advice
+		//4. Advice : 무엇에 대한 건지 지정 what(어떤 메소드를 대상으로 하는가)
+		logger.info("Before Aspect - Method is called - {}", joinPoint); 
 		
 		
 		
