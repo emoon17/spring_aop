@@ -20,7 +20,7 @@ public class LoggingAspect {
 	// execution(* PACKAGE.*.*(..))
 	// 메소드 호출 전에 실행할 것이기 때문에 Before
 	@Before("execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))") 
-	public void LogMethodCall(JoinPoint joinPoint) { // joinpoint 특정 메소드 실행을 명시
+	public void LogMethodCall(JoinPoint joinPoint) { //joinpoint 특정 메소드 실행을 명시 
 		//4. Advice : 무엇에 대한 건지 지정 what(어떤 메소드를 대상으로 하는가)
 		logger.info("Before Aspect - Method is called - {}", joinPoint); 
 		
