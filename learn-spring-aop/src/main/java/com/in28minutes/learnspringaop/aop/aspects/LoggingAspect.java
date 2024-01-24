@@ -1,6 +1,9 @@
 package com.in28minutes.learnspringaop.aop.aspects;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -20,12 +23,29 @@ public class LoggingAspect {
 	// execution(* PACKAGE.*.*(..))
 	// 메소드 호출 전에 실행할 것이기 때문에 Before
 	@Before("execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))") 
-	public void LogMethodCall(JoinPoint joinPoint) { //joinpoint 특정 메소드 실행을 명시 
+	public void LogMethodCallBeforeExecution(JoinPoint joinPoint) { //joinpoint 특정 메소드 실행을 명시 
 		//4. Advice : 무엇에 대한 건지 지정 what(어떤 메소드를 대상으로 하는가)
 		logger.info("Before Aspect - Method is called - {}", joinPoint); 
-		
-		
-		
-		
+	}
+	
+	@After("execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))") 
+	public void LogMethodCallAfterExecution(JoinPoint joinPoint) {  
+		logger.info("After Aspect - {} has executed", joinPoint); 
+	}
+	
+	@AfterThrowing(
+			pointcut ="execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))",
+			throwing = "exception"
+			) 
+	public void LogMethodCallAfterThrowingExecution(JoinPoint joinPoint, Exception exception) {  
+		logger.info("AfterThrowing Aspect - {} has thrown an executed", joinPoint, exception); 
+	}
+	
+	@AfterReturning(
+			pointcut ="execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))",
+			returning = "resultValue"
+			) 
+	public void LogMethodCallAfterReturningExecution(JoinPoint joinPoint, Object resultValue) {  
+		logger.info("@AfterReturning Aspect - {} has {}", joinPoint, resultValue); 
 	}
 }

@@ -18,6 +18,15 @@ public class BusinessService1 {
 	
 	public int calculateMax() {
 		int[] data =dataService1.retrieveData();
+		
+		//throw new RuntimeException("Something Went Wrong!");
+		
+		try {
+			Thread.sleep(30);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//최댓값
 		return Arrays.stream(data).max().orElse(0);
 	}
