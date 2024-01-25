@@ -22,19 +22,19 @@ public class LoggingAspect {
 	// 3.Pointcut : 언제를 지정 when - 어떤 메소드를 인터셉트할 것인가.
 	// execution(* PACKAGE.*.*(..))
 	// 메소드 호출 전에 실행할 것이기 때문에 Before
-	@Before("execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))") 
+	@Before("com.in28minutes.learnspringaop.aop.aspects.CommonPointcutConfig.allPackageConfigUsingBean()") 
 	public void LogMethodCallBeforeExecution(JoinPoint joinPoint) { //joinpoint 특정 메소드 실행을 명시 
 		//4. Advice : 무엇에 대한 건지 지정 what(어떤 메소드를 대상으로 하는가)
 		logger.info("Before Aspect - Method is called - {}", joinPoint); 
 	}
 	
-	@After("execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))") 
+	@After("com.in28minutes.learnspringaop.aop.aspects.CommonPointcutConfig.businessPackageConfig()") 
 	public void LogMethodCallAfterExecution(JoinPoint joinPoint) {  
 		logger.info("After Aspect - {} has executed", joinPoint); 
 	}
 	
 	@AfterThrowing(
-			pointcut ="execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))",
+			pointcut ="com.in28minutes.learnspringaop.aop.aspects.CommonPointcutConfig.businessAndDataPackageConfig()",
 			throwing = "exception"
 			) 
 	public void LogMethodCallAfterThrowingExecution(JoinPoint joinPoint, Exception exception) {  
@@ -42,7 +42,7 @@ public class LoggingAspect {
 	}
 	
 	@AfterReturning(
-			pointcut ="execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))",
+			pointcut ="com.in28minutes.learnspringaop.aop.aspects.CommonPointcutConfig.dataPackageConfig()",
 			returning = "resultValue"
 			) 
 	public void LogMethodCallAfterReturningExecution(JoinPoint joinPoint, Object resultValue) {  

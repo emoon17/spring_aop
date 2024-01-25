@@ -13,7 +13,8 @@ public class PerformanceTrackingAspect {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
-	@Around("execution(* com.in28minutes.learnspringaop.aop.business.*.*(..))")
+	//@Around("com.in28minutes.learnspringaop.aop.aspects.CommonPointcutConfig.businessAndDataPackageConfig()")
+	@Around("com.in28minutes.learnspringaop.aop.aspects.CommonPointcutConfig.trackTimeAnnotation()")
 	public Object findExecutionTime(ProceedingJoinPoint proceedingJoinPoint) throws Throwable { // JoinPoint를 쓰지 않는 이유 : findExecutionTime해당 메소드를 실행시키고 싶기 때문
 																			// ProceedingJoinPoint : AspectJ 애스펙트 중 Around 애스팩트를 지원한다	
 		
