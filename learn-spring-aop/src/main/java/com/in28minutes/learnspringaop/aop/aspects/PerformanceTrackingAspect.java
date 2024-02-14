@@ -21,6 +21,8 @@ public class PerformanceTrackingAspect {
 		long startTimeMillis = System.currentTimeMillis();
 		// Execute the method - 대상 메소드를 호출해준다.
 		Object returnValue = proceedingJoinPoint.proceed();
+		
+		
 		//Stop the timer -- 2. 이 작업은 실행이 끝난 후에 수행하게 된다.
 		long stopTimeMillis = System.currentTimeMillis();
 		
